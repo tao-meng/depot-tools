@@ -112,7 +112,7 @@ try {
   Write-Output "Downloading CIPD client for $Platform from $URL..."
   Retry-Command {
     $ProgressPreference = "SilentlyContinue"
-    Invoke-WebRequest -UserAgent $UserAgent -Uri $URL -OutFile $TmpPath
+    Invoke-WebRequest -Proxy "http://127.0.0.1:3128" -UserAgent $UserAgent -Uri $URL -OutFile $TmpPath
   }
 
   $ActualSHA256 = (Get-FileHash -Path $TmpPath -Algorithm "SHA256").Hash.toLower()
